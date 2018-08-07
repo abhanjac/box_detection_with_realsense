@@ -37,40 +37,51 @@ The camera to be used should be small and light, so that it can be put on a dron
 ![setup_on_drone_3](images/setup_on_drone_3.jpg)
 ![setup_on_drone_4](images/setup_on_drone_4.jpg)
 
-The next figure shows the electrical panel door mounted on a dummy wall in the lab. 
-The figure also shows the yellow claws with fingers to grab the door handle. 
+The next figure shows the **electrical panel door** mounted on a dummy wall in the lab. 
+The figure also shows the **yellow claws with fingers** to grab the door handle. 
 This will be later attached to the drone. For now it is only mounted on a stand so that the overall setup looks like a real image as seen by the realsense camera.
 The claws will be visible from one side of the frame, as it is supposed to be mounted on one arm of the drone.
 
-![image_of_box_and_claw_from_realsense](images/image_of_box_and_claw_from_realsense.png)
+![original_rgb_frame](images/original_rgb_frame.png)
 
 # Algorithm Description: 
 The algorithm goes through several stages for detecting the box.
 
 ### Stage 1:
-The videos from the realsense is read as a numpy array. This included both the rgb frame as well as the depth frame.
-The depth frame is of the same dimension as the rgb frame (640 x 480 pixels) but each pixel in the frame has a value equal to the distance of the object represented by that pixel from the camera in mm.
+The videos from the realsense is read as a numpy array. This included both the **rgb frame** as well as the depth frame.
+The **depth frame** is of the same dimension as the rgb frame (640 x 480 pixels) but each pixel in the frame has a value equal to the distance of the object represented by that pixel from the camera in mm.
 
 ### Stage 2:
 When the box is nearer to the camera, the claws will be obstructing parts of the box. But it is already known at which pixels the claws are visible.
 So the pixels for the claws are replaced by the other surrounding background pixels to that the overall frame has no visible claws and only the box and the background are visible. 
-The following figure shows the original frame and the processed frame with the claws removed. This frame will be used for further processing.
+The following figure shows the original frame and the processed frame with the claws removed. This frame will be used for further processing. This frame will be referred to as **modified rgb frame** from now onwards.
 
-![image_with_claws](images/image_with_claws.png)
-![image_without_claws](images/image_without_claws.png)
+![original_rgb_frame](images/original_rgb_frame.png)
+![modified_rgb_frame](images/modified_rgb_frame.png)
 
 ### Stage 3:
-The modified rgb frames from stage 2, (claws removed) are then subjected to edge detection and all the contours from these edges are found out. 
-These contours are then filtered based on their size and area so that most of the unwanted contours get removed. 
-This filtered contour frame is also shown which includes the contour of the box and some other similar contours.
+The modified rgb frames from stage 2, (claws removed) are then subjected to edge detection and all the contours from these edges are found out. This **contour frame** is shown below.
+These contours are then filtered based on their size and area so that most of the unwanted contours get removed. This will be called **filtered contour frame**.
+This filtered contour frame is also shown which includes the contour of the box and some other similar contours. These contours are then drawn as filled blocks in a new frame to create a mask.
+This will be called **contour mask**.
 
-![frames_with_all_contours](images/frames_with_all_contours.png)
-![frames_with_filtered_contours](images/frames_with_filtered_contours.png)
+![contour_frame](images/contour_frame.png)
+![filtere_contour_frame](images/filtered_contour_frame.png)
+![contour_frame](images/contour_frame.png)
+![contour_mask](images/contour_mask.png)
 
 However, the size of this box contour will not stay fixed. It will change depending on the distance of the box from the camera.
 So the size and area filters applied to the contour frame cannot have a fixed threshold, but has to be a range.
 
+### Stage 4:
+After this, the modified rgb frame is filtered with a color filter, so that only the objects which are within a range of color, remains visible.
+This **color mask** is shown below. This color mask is then combined with the contour mask created earlier in stage 3 to remove the last remaining unwanted contours. 
+This creates the **final contour frame** shown below.
+
+![color_mask](images/color_mask.png)
+![final_contour_frame](images/final_contour_frame.png)
  
+
 
 
 
