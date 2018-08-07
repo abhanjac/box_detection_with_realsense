@@ -7,16 +7,16 @@ But in the recent past they are also being employed for interacting physically w
 This can involve tasks like picking up packages or boxes, mounting some sensor on a wall or opening doors while hovering.
 Several sophisticated end effectors have also been designed for this purpose. 
 But for all of them to work the drone needs to identify the target object in front of it.
-So the focus of this project is to identify an electrical panel door and its door handle and measure the distance of the drone from it.
-This information will be later used (in a separate project) by the drone for controlling its position and the movement of its end effector to grab the door handle and pull open the door.
+So the focus of this project is to identify an electrical panel box and its handle and measure the distance of the drone from it.
+This information will be later used (in a separate project) by the drone for controlling its position and the movement of its end effector to grab the box handle and pull open the box.
 
-This project is only about the image processing part to identify and electrical panel door. 
+This project is only about the image processing part to identify and electrical panel box. 
 The camera to be used should be small and light, so that it can be put on a drone. So we selected the Intel Realsense Depth camera for this purpose.
 
 # Requirements: 
 * Algorithm should be able to run in real time on a laptop as well as on a sigle board computer (without any dependence on GPUs).
-* Algorithm should be able to detect the electrical panel door and show the position of the door handle.
-* The distance of the door handle from the camera should also be calculated continuously in real time.
+* Algorithm should be able to detect the electrical panel box and show the position of the box handle.
+* The distance of the box handle from the camera should also be calculated continuously in real time.
 * All software should be open source. 
 * Overall setup should be battery operated and should be small and light enough to be mounted on a drone. 
 
@@ -37,14 +37,14 @@ The camera to be used should be small and light, so that it can be put on a dron
 ![setup_on_drone_3](images/setup_on_drone_3.jpg)
 ![setup_on_drone_4](images/setup_on_drone_4.jpg)
 
-The next figure shows the **electrical panel door** mounted on a dummy wall in the lab. 
-The figure also shows the **yellow claws with fingers** to grab the door handle. 
+The next figure shows the **electrical panel box** mounted on a dummy wall in the lab. 
+The figure also shows the **yellow claws with fingers** to grab the box handle. 
 This will be later attached to the drone. For now it is only mounted on a stand so that the overall setup looks like a real image as seen by the realsense camera.
 The claws will be visible from one side of the frame, as it is supposed to be mounted on one arm of the drone.
 
 ![original_rgb_frame](images/original_rgb_frame.png)
 
-# Algorithm Description: 
+# Algorithm for Detecting the Box: 
 The algorithm goes through several stages for detecting the box.
 
 ### Stage 1:
@@ -81,7 +81,11 @@ This creates the **final contour frame** shown below.
 ![color_mask](images/color_mask.png)
 ![final_contour_frame](images/final_contour_frame.png)
 
-### Stage 5:
+This two stage detection (with contour mask and color mask) is done to make the algorithm robust. 
+Sometimes with only contour dectection, often the adjacent contours gets merged which makes the overall contour of the box, include parts of other adjacent objects or backgrounds as well.
+Hence, to prevent that the color mask filter is also used on top of it.
+
+### Creating an Support Vector Machine model for the Box:
 This final contour frame is used as a mask to crop out parts of the original rgb frame. The **Histogram of Oriented Gradient (HOG)** features are then extracted from all of these cropped out parts.
 These HOG features are then used to create a positive training set for a **Support Vector Machine (SVM)**. 
 Negative examples are generated from some of the other unwanted contour HOG features. Then model is also trained with other negetive examples collected from environments outside the lab.
@@ -91,6 +95,31 @@ The HOG features helps to identify the texture of the box. It gives an idea of i
 
 ![cropped_image](images/cropped_image.png)
 ![hog_feature](images/hog_feature.png)
+
+This stage is not executed during the real time execution of the box detection code. 
+It is only done once at the beginning to create the SVM model from the training data. This SVM model is saved as [model.p](codes/model.p).
+
+#### Procedure for creating the SVM model:
+The [svm_data.tar.gz](codes/svm_data.tar.gz) file has to be extacted. This will create have a **train** and a **test** directory.
+The train directory has 117 positive examples of the box and 296 negative examples (all are cropped images like the ones shown above).
+The [train_svm.py](codes/train_svm.py) script has to be run to create the [model.p](codes/model.p) file.
+
+However an already created [model.p](codes/model.p) is present in this repository (which is an already trained SVM model) which can also be used.
+
+### Stage 5:
+The HOG features from the final contour found in stage 4 are extracted and fed to this SVM model found in the file [model.p](codes/model.p).
+If the final contour really represents the box, then the output of the model should be **True** else **False**.
+So if the model output is True, then it is confirmed that the box is detected.
+Use of the SVM ensures that there are no false detections or unwanted contours left behind in the final contour frame.
+
+# Finding the Distance of the Box:
+Once the final box contour is found, a **rotated rectangle** ( **cyan** in color ) is drawn around it as shown in the **final detection frame**.
+The position of the handle of the box is inferred from this bounding rectangle.
+Since the corner verted and angle of tilt of the rectangle is known, a rotation matrix transformation is able to find the exact loaction of the box handle.
+This is marked by the **purple dot** inside the bounding rectangle. The detected box and the handle are shown below.
+
+![final_detection_frame](images/final_detection_frame.png)
+
 
 
 
