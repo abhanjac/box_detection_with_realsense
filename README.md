@@ -37,6 +37,13 @@ The camera to be used should be small and light, so that it can be put on a dron
 ![setup_on_drone_3](images/setup_on_drone_3.jpg)
 ![setup_on_drone_4](images/setup_on_drone_4.jpg)
 
+The next figure shows the electrical panel door mounted on a dummy wall in the lab. 
+The figure also shows the yellow claws with fingers to grab the door handle. 
+This will be later attached to the drone. For now it is only mounted on a stand so that the overall setup looks like a real image as seen by the realsense camera.
+The claws will be visible from one side of the frame, as it is supposed to be mounted on one arm of the drone.
+
+![image_of_box_and_claw_from_realsense](images/image_of_box_and_claw_from_realsense.png)
+
 # Algorithm Description: 
 
 
