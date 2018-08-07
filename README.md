@@ -136,12 +136,24 @@ But this is not much of a problem as in the final configuration the drone will h
 So the camera is at 500 mm from the box will imply that the claws are at only 100 mm from the box, which is a very short distance. 
 Hence, moving blindly in this short distance is not a problem.
 
-The final distances **in meters** measured is also displayed on the final detected frame.
+The final distances **in meters** measured is also displayed on the final detected frame. 
+This distance show how much the camera or the drone has to be moved so that the **red crosshairs** drawn on the frame will merge with the **purple dot** showing the position of the handle.
 **X axis** is directed **Outward** from the plane of the frame (towards the viewer).
 **Y axis** is directed to the **Left**.
 **Z axis** is directed **Upwards**.
 
+# Results:
+There is a video file that can be used to test the output the algorithm.
+The raw video file, a recorded video showing the final detection is present in the [videos](videos) directory.
 
+If the output [detection video](videos/detection_video.avi) is recorded by running the algorithm on the [raw_input_video](videos/raw_input_video.avi) file.
+
+It can be seen that if the box is too near to the camera, (which is within 0.5 m) the box is not detected. Also, the detection flickers if the claws obstruct the box too much.
+But other than these two cases the detection is pretty stable and robust.
+
+# Future Work:
+Future work will include using the distance measured from this algorithm to be used to modulate the movement of the drone.
+The drone is controlled using the **Robot Operating System (ROS)** which will take this **box detected** signal and the subsequent distance measurement as an input and try to perform the task of opening the box by the handle.
 
 
 
