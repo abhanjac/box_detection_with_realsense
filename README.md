@@ -115,16 +115,33 @@ Use of the SVM ensures that there are no false detections or unwanted contours l
 # Finding the Distance of the Box:
 Once the final box contour is found, a **rotated rectangle** ( **cyan** in color ) is drawn around it as shown in the **final detection frame**.
 The position of the handle of the box is inferred from this bounding rectangle.
-Since the corner verted and angle of tilt of the rectangle is known, a rotation matrix transformation is able to find the exact loaction of the box handle.
+Since the corner vertices and angle of tilt of the rectangle is known, a rotation matrix transformation is able to find the exact loaction of the box handle.
 This is marked by the **purple dot** inside the bounding rectangle. The detected box and the handle are shown below.
 
 ![final_detection_frame](images/final_detection_frame.png)
 
+Now, the Realsense R200 gives a good measure of the distance in a range of **0.5 mm to 2 mm**. 
+So, in this code if the distance of the camera from the box is **beyond 1.5 mm** the distance is estimated using the approximate focal length of the **rgb camera**.
+
+The approximate focal length is found out based on the assumption that the size of the object will be the same as the size of its image, if the object is at the focal length of the camera.
+
+**Focal Length (F) = Object Distance (D) x Image Size (P) / Object Size (W)**
+
+Within **0.5 mm and 1.5 mm** the distance is measured using the **depth image**.
+
+**Below 0.5 mm** however, there is no proper way to measure the distance solely based on rgb or depth image. 
+The final contour of the box becomes bigger than the frame size itself and the depth frame values are also not usable.
+So in such a position the drone either has to move blindly or has to use some other sensor like sonar etc.
+But this is not much of a problem as in the final configuration the drone will have the claws mounted on a front rod or boom, which will be around 400 mm anyways.
+So the camera is at 500 mm from the box will imply that the claws are at only 100 mm from the box, which is a very short distance. 
+Hence, moving blindly in this short distance is not a problem.
+
+The final distances **in meters** measured is also displayed on the final detected frame.
+**X axis** is directed **Outward** from the plane of the frame (towards the viewer).
+**Y axis** is directed to the **Left**.
+**Z axis** is directed **Upwards**.
 
 
-
-
- 
 
 
 
