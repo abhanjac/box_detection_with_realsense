@@ -32,8 +32,8 @@ The camera to be used should be small and light, so that it can be put on a dron
 #### Overall Setup mounted on the test Drone:
 **[ Odroid is inside the white case ]**
 
-![setup_on_drone_1](images/setup_on_drone_1.jpg)
-![setup_on_drone_2](images/setup_on_drone_2.jpg)
+![setup_on_drone_1_marked](images/setup_on_drone_1_marked.jpg)
+![setup_on_drone_2_marked](images/setup_on_drone_2_marked.jpg)
 ![setup_on_drone_3](images/setup_on_drone_3.jpg)
 ![setup_on_drone_4](images/setup_on_drone_4.jpg)
 
