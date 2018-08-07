@@ -34,6 +34,7 @@ The camera to be used should be small and light, so that it can be put on a dron
 
 ![setup_on_drone_1_marked](images/setup_on_drone_1_marked.jpg)
 ![setup_on_drone_2_marked](images/setup_on_drone_2_marked.jpg)
+
 ![setup_on_drone_3](images/setup_on_drone_3.jpg)
 ![setup_on_drone_4](images/setup_on_drone_4.jpg)
 
@@ -67,6 +68,7 @@ This will be called **contour mask**.
 
 ![modified_rgb_frame](images/modified_rgb_frame.png)
 ![contour_frame](images/contour_frame.png)
+
 ![filtered_contour_frame](images/filtered_contour_frame.png)
 ![contour_mask](images/contour_mask.png)
 
