@@ -158,7 +158,7 @@ The raw video file, a recorded video showing the final detection is present in t
 The output [detection_video](videos/detection_video.avi) is recorded by running the algorithm on the [raw_input_video](videos/raw_input_video.avi) file.
 
 The detection video can also be found on [Youtube](https://www.youtube.com/) at the following link:
-[final box detection video]()
+* [final box detection video with distance measurement](https://www.youtube.com/watch?v=hQYESMS1604&feature=youtu.be)
 
 It can be seen that if the box is too near to the camera, (which is within 0.5 m) the box is not detected. Also, the detection flickers if the claws obstruct the box too much.
 But other than these two cases the detection is pretty stable and robust.
