@@ -59,6 +59,19 @@ The following figure shows the original frame and the processed frame with the c
 ![image_with_claws](images/image_with_claws.png)
 ![image_without_claws](images/image_without_claws.png)
 
+### Stage 3:
+The modified rgb frames from stage 2, (claws removed) are then subjected to edge detection and all the contours from these edges are found out. 
+These contours are then filtered based on their size and area so that most of the unwanted contours get removed. 
+This filtered contour frame is also shown which includes the contour of the box and some other similar contours.
+
+![frames_with_all_contours](images/frames_with_all_contours.png)
+![frames_with_filtered_contours](images/frames_with_filtered_contours.png)
+
+However, the size of this box contour will not stay fixed. It will change depending on the distance of the box from the camera.
+So the size and area filters applied to the contour frame cannot have a fixed threshold, but has to be a range.
+
+ 
+
 
 
 
