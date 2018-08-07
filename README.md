@@ -57,7 +57,7 @@ So the pixels for the claws are replaced by the other surrounding background pix
 The following figure shows the original frame and the processed frame with the claws removed. This frame will be used for further processing. This frame will be referred to as **modified rgb frame** from now onwards.
 
 ![original_rgb_frame](images/original_rgb_frame.png)
-![modified_rgb_frame](images/modified_rgb_frame.png)
+![modified_rgb_frame1](images/modified_rgb_frame1.png)
 
 ### Stage 3:
 The modified rgb frames from stage 2, (claws removed) are then subjected to edge detection and all the contours from these edges are found out. This **contour frame** is shown below.
