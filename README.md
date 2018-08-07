@@ -128,6 +128,15 @@ The approximate focal length is found out based on the assumption that the size 
 **Focal Length (F) = Object Distance (D) x Image Size (P) / Object Size (W)**
 
 Within **0.5 mm and 1.5 mm** the distance is measured using the **depth image**.
+The value of every pixels of the region of the frame where the final contour was detected is taken into account and a historgram of these values is created.
+This is because there may be a few values that may be from the pixels which actually belong to the background. 
+Also there may be some fluctuations in the depth frame as well, which may lead to some sudden 0 values for some pixels even if they belong to the box contour.
+But these erronous pixels are not very large in number. 
+So if a historgram of the number of pixels at different distance values, is created, then it is seen that the majority of the pixels are belonging to the bin that gives the correct distance of the box.
+Hence, this distance corresponding to the group of majority of the pixels is considered as the detected distance of the box.
+An image of such a historgram is shown below. It shows the peak as well which belongs bin that represents the actual distance of the box.
+
+![distance_histogram](images/distance_histogram.png)
 
 **Below 0.5 mm** however, there is no proper way to measure the distance solely based on rgb or depth image. 
 The final contour of the box becomes bigger than the frame size itself and the depth frame values are also not usable.
