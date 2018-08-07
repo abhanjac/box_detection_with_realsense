@@ -65,9 +65,9 @@ These contours are then filtered based on their size and area so that most of th
 This filtered contour frame is also shown which includes the contour of the box and some other similar contours. These contours are then drawn as filled blocks in a new frame to create a mask.
 This will be called **contour mask**.
 
+![modified_rgb_frame](images/modified_rgb_frame.png)
 ![contour_frame](images/contour_frame.png)
-![filtere_contour_frame](images/filtered_contour_frame.png)
-![contour_frame](images/contour_frame.png)
+![filtered_contour_frame](images/filtered_contour_frame.png)
 ![contour_mask](images/contour_mask.png)
 
 However, the size of this box contour will not stay fixed. It will change depending on the distance of the box from the camera.
