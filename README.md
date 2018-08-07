@@ -155,7 +155,7 @@ This distance show how much the camera or the drone has to be moved so that the 
 There is a video file that can be used to test the output the algorithm.
 The raw video file, a recorded video showing the final detection is present in the [videos](videos) directory.
 
-If the output [detection video](videos/detection_video.avi) is recorded by running the algorithm on the [raw_input_video](videos/raw_input_video.avi) file.
+If the output [detection_video](videos/detection_video.avi) is recorded by running the algorithm on the [raw_input_video](videos/raw_input_video.avi) file.
 
 It can be seen that if the box is too near to the camera, (which is within 0.5 m) the box is not detected. Also, the detection flickers if the claws obstruct the box too much.
 But other than these two cases the detection is pretty stable and robust.
