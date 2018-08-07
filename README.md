@@ -141,8 +141,8 @@ An image of such a historgram is shown below. It shows the peak as well which be
 **Below 0.5 mm** however, there is no proper way to measure the distance solely based on rgb or depth image. 
 The final contour of the box becomes bigger than the frame size itself and the depth frame values are also not usable.
 So in such a position the drone either has to move blindly or has to use some other sensor like sonar etc.
-But this is not much of a problem as in the final configuration the drone will have the claws mounted on a front rod or boom, which will be around 400 mm anyways.
-So the camera is at 500 mm from the box will imply that the claws are at only 100 mm from the box, which is a very short distance. 
+But this is not much of a problem as in the final configuration the drone will have the claws mounted on a front rod or boom, which will be around 0.4 m anyways.
+So the camera is at 0.5 m from the box will imply that the claws are at only 0.1 m from the box, which is a very short distance. 
 Hence, moving blindly in this short distance is not a problem.
 
 The final distances **in meters** measured is also displayed on the final detected frame. 
