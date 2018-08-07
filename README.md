@@ -45,5 +45,20 @@ The claws will be visible from one side of the frame, as it is supposed to be mo
 ![image_of_box_and_claw_from_realsense](images/image_of_box_and_claw_from_realsense.png)
 
 # Algorithm Description: 
+The algorithm goes through several stages for detecting the box.
+
+### Stage 1:
+The videos from the realsense is read as a numpy array. This included both the rgb frame as well as the depth frame.
+The depth frame is of the same dimension as the rgb frame (640 x 480 pixels) but each pixel in the frame has a value equal to the distance of the object represented by that pixel from the camera in mm.
+
+### Stage 2:
+When the box is nearer to the camera, the claws will be obstructing parts of the box. But it is already known at which pixels the claws are visible.
+So the pixels for the claws are replaced by the other surrounding background pixels to that the overall frame has no visible claws and only the box and the background are visible. 
+The following figure shows the original frame and the processed frame with the claws removed. This frame will be used for further processing.
+
+![image_with_claws](images/image_with_claws.png)
+![image_without_claws](images/image_without_claws.png)
+
+
 
 
