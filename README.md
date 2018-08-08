@@ -55,16 +55,16 @@ The **depth frame** is of the same dimension as the rgb frame (640 x 480 pixels)
 ### Stage 2:
 When the box is nearer to the camera, the claws will be obstructing parts of the box. But it is already known at which pixels the claws are visible.
 So the pixels for the claws are replaced by the other surrounding background pixels to that the overall frame has no visible claws and only the box and the background are visible. 
-The following figure shows the original frame and the processed frame with the claws removed. This frame will be used for further processing. This frame will be referred to as **modified rgb frame** from now onwards.
+The following figure shows the **original frame** (left) and the processed frame with the claws removed. This frame will be used for further processing. This frame will be referred to as **modified rgb frame** (right) from now onwards.
 
 ![original_rgb_frame](images/original_rgb_frame.png)
 ![modified_rgb_frame1](images/modified_rgb_frame1.png)
 
 ### Stage 3:
-The modified rgb frames from stage 2, (claws removed) are then subjected to edge detection and all the contours from these edges are found out. This **contour frame** is shown below.
-These contours are then filtered based on their size and area so that most of the unwanted contours get removed. This will be called **filtered contour frame**.
+The modified rgb frames from stage 2, (claws removed) are then subjected to edge detection and all the contours from these edges are found out. This **contour frame** (top right) is shown below.
+These contours are then filtered based on their size and area so that most of the unwanted contours get removed. This will be called **filtered contour frame** (bottom left).
 This filtered contour frame is also shown which includes the contour of the box and some other similar contours. These contours are then drawn as filled blocks in a new frame to create a mask.
-This will be called **contour mask**.
+This will be called **contour mask** (bottom right).
 
 ![modified_rgb_frame](images/modified_rgb_frame.png)
 ![contour_frame](images/contour_frame.png)
@@ -77,8 +77,8 @@ So the size and area filters applied to the contour frame cannot have a fixed th
 
 ### Stage 4:
 After this, the modified rgb frame is filtered with a color filter, so that only the objects which are within a range of color, remains visible.
-This **color mask** is shown below. This color mask is then combined with the contour mask created earlier in stage 3 to remove the last remaining unwanted contours. 
-This creates the **final contour frame** shown below.
+This **color mask** (left) is shown below. This color mask is then combined with the contour mask created earlier in stage 3 to remove the last remaining unwanted contours. 
+This creates the **final contour frame** (right) shown below.
 
 ![color_mask](images/color_mask.png)
 ![final_contour_frame](images/final_contour_frame.png)
@@ -92,7 +92,7 @@ This final contour frame is used as a mask to crop out parts of the original rgb
 These HOG features are then used to create a positive training set for a **Support Vector Machine (SVM)**. 
 Negative examples are generated from some of the other unwanted contour HOG features. Then model is also trained with other negetive examples collected from environments outside the lab.
 A **Hard Negative Mining** is also performed with some of the difficult negetive examples to make the overall model more robust.
-The images below shows the **cropped out portions** and the modified rgb frame and the **HOG features** extracted from them, which will be used to train the SVM.
+The images below shows the **cropped out portions** (left) and the modified rgb frame and the **HOG features** (right) extracted from them, which will be used to train the SVM.
 The HOG features helps to identify the texture of the box. It gives an idea of its shape.
 
 ![cropped_image](images/cropped_image.png)
