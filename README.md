@@ -166,8 +166,10 @@ The detection video can also be found on [Youtube](https://www.youtube.com/) at 
 A gif showing a glimpse of the box detection is also shown below.
 ![](images/detection_snap.gif)
 
-It can be seen that if the box is too near to the camera, (which is within 0.5 m) the box is not detected. Also, the detection flickers if the claws obstruct the box too much.
-But other than these two cases the detection is pretty stable and robust.
+# Observations:
+* It can be seen that if the box is too near to the camera, (which is within 0.5 m) the box is not detected. This is because of the range limitation of the depth camera and the incapability of measuring the distance using rgb image at this close distance.
+* Even if the claws obstruct the box to some extent, it can still be detected. This is because the processing is based on the modified rgb frame that cloaks the claws. But the detection flickers if the claws obstruct the box too much.
+* Other than these two cases the detection is pretty stable and robust.
 
 # Future Work:
 Future work will include using the distance measured from this algorithm to be used to modulate the movement of the drone.
