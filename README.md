@@ -45,6 +45,9 @@ The claws will be visible from one side of the frame, as it is supposed to be mo
 
 ![original_rgb_frame](images/original_rgb_frame.png)
 
+[ **NOTE:** All of the figures of the electrical panel door has a green circle patch beside it. But this patch is not used in any of the image processing that we do in this project.
+This patch was made for an earlier experiment and was still kept there as it might be used later as well. But it has nothing to do with the task that is discussed here. ]
+
 # Algorithm for Detecting the Box: 
 The algorithm goes through several stages for detecting the box.
 
