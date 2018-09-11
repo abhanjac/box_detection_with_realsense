@@ -5,6 +5,8 @@ Detection of a electrical panel door using a Intel Realsense camera and Opencv a
 
 ![](images/detection_snap.gif)
 
+[YouTube Link](https://www.youtube.com/watch?v=bSGtvHl_pHU)
+
 Project is focused towards incorporating this technology into a drone for assisting it to open the door in air autonomously. 
 Drones are being used extensively for surveillance and reconnaissance tasks.
 But in the recent past they are also being employed for interacting physically with the environment.
