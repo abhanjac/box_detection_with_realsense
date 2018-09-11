@@ -1,7 +1,7 @@
 # Objective: 
 Detection of a electrical panel door using a Intel Realsense camera and Opencv and Scikit learn libraries. 
 
-**Glimpse of Final Result:**
+**A Glimpse of Final Result:**
 
 ![](images/detection_snap.gif)
 
