@@ -175,7 +175,7 @@ The detection video can also be found on [Youtube](https://www.youtube.com/) at 
 * [combined video for box detection](https://www.youtube.com/watch?v=bSGtvHl_pHU)
 
 A gif showing a glimpse of the box detection is also shown below.
-![](images/detection_snap.gif)
+<img src="https://github.com/abhanjac/box_detection_with_realsense/blob/master/images/detection_snap.gif" width="800" height="300">
 
 This algorithm ran on the Odroid XU4 in real time at **14 Hz**.
 
