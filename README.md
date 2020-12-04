@@ -114,7 +114,7 @@ It is only done once at the beginning to create the SVM model from the training 
 
 #### Procedure for creating the SVM model:
 The [svm_data.tar.gz](codes/svm_data.tar.gz) file has to be extacted. This will create have a **train** and a **test** directory.
-The train directory has 117 positive examples of the box and 296 negative examples (all are cropped images like the ones shown above).
+The train directory has **117** positive examples of the box and **296** negative examples (all are cropped images like the ones shown above).
 The [train_svm.py](codes/train_svm.py) script has to be run to create the [model.p](codes/model.p) file.
 
 However an already created [model.p](codes/model.p) is present in this repository (which is an already trained SVM model) which can also be used.
