@@ -1,5 +1,5 @@
 # Objective: 
-Detection of a electrical panel door using a Intel Realsense camera and Opencv and Scikit learn libraries. 
+This project is about using a drone to open an electrical panel door autonomously in the air. I have only worked on the part of the door detection with image processing using the onboard 3D camera of the drone. The overall detection algorithm is supposed to run in real-time (several times a second) on the onboard micro-computer (Odroid XU4) of the drone and hence no neural networks were used in this project. The detection uses standard computer vision libraries like contour detection, color detection, Histogram of oriented gradient feature detection and a support vector machine on top of that to create a robust door detection. Additionally the algorithm also calculates the distance of the door handle from the drone to guide the drones autopilot in the right direction to approach the door.
 
 **A *Trailer* of Final Result:**
 
